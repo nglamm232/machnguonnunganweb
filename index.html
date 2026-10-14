@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mạch nguồn Nùng An - Bảo tồn ngôn ngữ & Văn hóa dân tộc Nùng An Lục Yên</title>
+  
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- File CSS riêng biệt -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Thanh cuộn tiến trình -->
+  <div id="scroll-progress"></div>
+
+  <!-- Hiệu ứng Confetti -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- Nút trở về đầu trang -->
+  <div id="back-to-top" onclick="scrollToTop()">
+    <i class="fa-solid fa-arrow-up"></i>
+  </div>
+
+  <!-- HEADER & MENU CHÍNH -->
+  <header>
+    <div class="nav-container">
+      <div class="brand-logo" onclick="switchView('home')">
+        <div class="logo-frame">
+          <img src="Logo_2.png" alt="Logo Mạch Nguồn Nùng An" class="logo-img" onerror="this.onerror=null; this.src='Logo.png';">
+        </div>
+        <div class="brand-info">
+          <h1>Mạch nguồn Nùng An</h1>
+          <span>Lục Yên - Lào Cai</span>
+        </div>
+      </div>
+
+      <ul class="nav-menu">
+        <li class="nav-item active" onclick="switchView('home')"><i class="fa-solid fa-house"></i> Trang Chủ</li>
+        <li class="nav-item" onclick="switchView('lessons')"><i class="fa-solid fa-book-open-reader"></i> Bài Tập</li>
+        <li class="nav-item" onclick="switchView('flashcards')"><i class="fa-solid fa-layer-group"></i> Thẻ Từ Vựng</li>
+        <li class="nav-item" onclick="switchView('library')"><i class="fa-solid fa-book-bookmark"></i> Tủ Sách Điện Tử</li>
+        <li class="nav-item" onclick="switchView('videos')"><i class="fa-solid fa-circle-play"></i> Video Minh Hoạ</li>
+        <li class="nav-item" onclick="switchView('stories')"><i class="fa-solid fa-masks-theater"></i> Các Câu Chuyện Cổ</li>
+        <li class="nav-item" onclick="switchView('culture')"><i class="fa-solid fa-book-open"></i> Văn Hóa Nùng An</li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="search-btn" onclick="openDictModal()">
+          <i class="fa-solid fa-magnifying-glass"></i> Tra từ nhanh
+          <span class="kbd-shortcut">Ctrl K</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- NỘI DUNG CHÍNH -->
+  <main>
+
+    <!-- 1. VIEW: TRANG CHỦ -->
+    <section id="view-home" class="view-section active">
+
+      <!-- BANNER HERO -->
+      <div class="hero-banner">
+        <img src="Anhgiaotrinhngang.png" alt="Giáo trình tiếng Nùng An Lục Yên" class="hero-bg-img" onerror="this.style.display='none'">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <div class="hero-tag"><i class="fa-solid fa-seedling"></i> Nền Tảng Số Bảo Tồn Ngôn Ngữ & Văn Hoá Bản Địa</div>
+          <h2>Học Tiếng Mẹ Đẻ – Gắn Kết Bản Làng</h2>
+          <p>Hệ sinh thái học tập tương tác số hóa tiếng Nùng An đầu tiên tại vùng đất ngọc Lục Yên. Khám phá 10 bài học chuẩn hoá, kho video minh hoạ sinh động và kho tàng truyện cổ, phong tục tập quán lâu đời.</p>
+          <div class="hero-cta">
+            <button class="btn btn-primary" onclick="switchView('lessons')"><i class="fa-solid fa-play"></i> Bắt đầu bài học</button>
+            <button class="btn btn-light" onclick="switchView('library')"><i class="fa-solid fa-book-bookmark"></i> Xem tủ sách điện tử</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ĐOẠN GIỚI THIỆU CHUẨN XÁC HOÀN TOÀN -->
+      <div class="intro-showcase">
+        <div class="intro-header">
+          <div class="intro-badge"><i class="fa-solid fa-mountain"></i> Di Sản Đồng Bào Bản Địa</div>
+          <h2>ĐÔI NÉT VỀ ĐỒNG BÀO NÙNG AN VÙNG ĐẤT NGỌC LỤC YÊN, TỈNH LÀO CAI</h2>
+        </div>
+
+        <div class="intro-grid">
+          <div class="intro-text-block">
+            <p>
+              Người Nùng An là một cộng đồng dân tộc giàu bản sắc văn hóa, định cư lâu đời tại vùng đất Lục Yên, nay thuộc tỉnh Lào Cai, đặc biệt tại các địa phương như Phúc Lợi, Tân Lĩnh, Khai Trung và những vùng lân cận. Trải qua nhiều thế hệ gắn bó với núi rừng và dòng sông Chảy, đồng bào vẫn bền bỉ gìn giữ tiếng nói, phong tục tập quán và những giá trị văn hóa truyền thống. Tiếng Nùng An mang nét mộc mạc, gần gũi, là sợi dây kết nối các thế hệ và góp phần tạo nên bản sắc riêng của cộng đồng.
+            </p>
+            <p>
+              Trang phục truyền thống của người Nùng An Lục Yên nổi bật với sắc chàm trầm mặc, giản dị mà duyên dáng. Những bộ trang phục được nhuộm chàm thủ công, kết hợp cùng khăn đội đầu, thắt lưng vải và các món trang sức truyền thống, thể hiện sự khéo léo, tinh tế của người phụ nữ. Bên cạnh đó, những làn điệu hát Phưn, các phong tục trong đời sống cộng đồng, cùng hương vị của bánh chưng đen, xôi ngũ sắc và những món ăn truyền thống đã góp phần tạo nên nét văn hóa đặc sắc của đồng bào Nùng An. Tất cả hòa quyện thành mạch nguồn văn hóa bền bỉ, được gìn giữ và trao truyền qua bao thế hệ trên vùng đất ngọc Lục Yên.
+            </p>
+          </div>
+          <div class="intro-media-frame">
+            <img src="ban_sac_nung_an_luc_yen.jpg" alt="Sinh hoạt dân ca đồng bào Nùng An Lục Yên" onerror="this.src='https://images.unsplash.com/photo-1544717302-de2939b7ef71?q=80&w=800'">
+            <div class="intro-media-caption">
+              <i class="fa-solid fa-camera"></i> Đồng bào Nùng An trong sắc phục chàm truyền thống bên mái nhà sàn Lục Yên
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 KHỐI NỔI BẬT: SẮC PHỤC CHÀM ĐEN & HÁT PHƯN -->
+        <div class="culture-two-pillars">
+          <div class="pillar-card pillar-indigo">
+            <h3>SẮC PHỤC CHÀM ĐEN</h3>
+            <p>
+              Trang phục truyền thống mang sắc chàm đặc trưng, được nhuộm thủ công qua nhiều công đoạn. Kiểu dáng giản dị, đường may khéo léo cùng khăn đội đầu, thắt lưng vải và trang sức truyền thống làm nổi bật vẻ đẹp kín đáo, duyên dáng của người Nùng An.
+            </p>
+          </div>
+
+          <div class="pillar-card pillar-singing">
+            <h3>HÁT PHƯN</h3>
+            <p>
+              Hát Phưn là một nét sinh hoạt văn hóa tinh thần giàu ý nghĩa trong đời sống của đồng bào Nùng An. Qua những lời ca mộc mạc, tiếng hát gửi gắm tình cảm, lời chúc tốt đẹp và sự gắn kết giữa con người với con người. Việc gìn giữ, thực hành và truyền dạy những làn điệu truyền thống cho thế hệ trẻ góp phần bảo tồn tiếng nói, văn hóa và bản sắc dân tộc Nùng An tại Lục Yên.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="stats-strip">
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #e0f2fe; color: #0284c7;"><i class="fa-solid fa-book-bookmark"></i></div>
+          <div class="stat-info">
+            <h4>10</h4>
+            <p>Bài học chuẩn 7 phân mục</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #fef3c7; color: #d97706;"><i class="fa-solid fa-spell-check"></i></div>
+          <div class="stat-info">
+            <h4>100+</h4>
+            <p>Từ vựng bản địa phong phú</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #ede9fe; color: #7c3aed;"><i class="fa-solid fa-book-open"></i></div>
+          <div class="stat-info">
+            <h4>3 Quyển Sách</h4>
+            <p>Sách lật 3D trực tuyến Heyzine</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="background: #ccfbf1; color: #0d9488;"><i class="fa-solid fa-people-roof"></i></div>
+          <div class="stat-info">
+            <h4>Nùng An</h4>
+            <p>Lục Yên - Lào Cai</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lộ trình 10 bài học -->
+      <div class="section-header">
+        <h3>Lộ Trình 10 Bài Học Tiếng Nùng An</h3>
+        <p>Hệ thống bài học biên soạn bài bản từ cơ bản đến nâng cao theo giáo trình thực hành</p>
+      </div>
+
+      <div class="lesson-grid" id="home-lesson-grid">
+        <!-- Render bằng JavaScript -->
+      </div>
+    </section>
+
+    <!-- 2. VIEW: BÀI TẬP (10 BÀI ĐẦY ĐỦ 7 MỤC) -->
+    <section id="view-lessons" class="view-section">
+      <div class="lesson-detail-container">
+        <!-- Sidebar bài học 1 -> 10 -->
+        <div class="sidebar-lessons">
+          <h4><i class="fa-solid fa-list-ol"></i> Danh Sách Bài Học</h4>
+          <div id="lesson-sidebar-items">
+            <!-- Render JS -->
+          </div>
+        </div>
+
+        <!-- Nội dung 7 Tab chuẩn -->
+        <div class="lesson-content-area">
+          <div style="margin-bottom: 1.6rem;">
+            <span class="lesson-num" id="current-lesson-badge">Bài 1</span>
+            <h2 id="current-lesson-title" style="font-size: 1.7rem; color: var(--primary-dark); margin-top: 4px; font-family: 'Playfair Display', serif;">Lời Chào Và Làm Quen</h2>
+            <p id="current-lesson-desc" style="color: var(--text-muted); font-size: 0.96rem;">Làm quen với các câu xưng hô, chào hỏi xã giao thường nhật của người Nùng An.</p>
+          </div>
+
+          <!-- TABS HEADER -->
+          <div class="tabs-header">
+            <button class="tab-btn active" onclick="switchLessonTab('tab-vocab')">1. Từ vựng (8 từ)</button>
+            <button class="tab-btn" onclick="switchLessonTab('tab-dialogue')">2. Đọc hội thoại</button>
+            <button class="tab-btn" onclick="switchLessonTab('tab-tf')">3. Đúng / Sai</button>
+            <button class="tab-btn" onclick="switchLessonTab('tab-quiz')">4. Trắc nghiệm</button>
+            <button class="tab-btn" onclick="switchLessonTab('tab-match')">5. Ghép nối từ</button>
+            <button class="tab-btn" onclick="switchLessonTab('tab-scramble')">6. Sắp xếp câu</button>
+            <button class="tab-btn" onclick="switchLessonTab('tab-write')">7. Viết lại câu</button>
+          </div>
+
+          <!-- TAB 1: TỪ VỰNG -->
+          <div id="tab-vocab" class="tab-pane active">
+            <div class="vocab-grid" id="vocab-grid-container"></div>
+          </div>
+
+          <!-- TAB 2: ĐỌC HỘI THOẠI -->
+          <div id="tab-dialogue" class="tab-pane">
+            <div class="dialogue-ctrls">
+              <label style="display: flex; align-items: center; gap: 8px; font-size: 0.92rem; font-weight: 700; cursor: pointer; color: var(--primary-dark);">
+                <input type="checkbox" id="toggle-vi-trans" onchange="toggleTranslation(this.checked)" checked>
+                Hiển thị bản dịch tiếng Việt
+              </label>
+            </div>
+            <div id="dialogue-container"></div>
+          </div>
+
+          <!-- TAB 3: ĐIỀN ĐÚNG / SAI -->
+          <div id="tab-tf" class="tab-pane">
+            <div id="tf-container"></div>
+          </div>
+
+          <!-- TAB 4: TRẮC NGHIỆM -->
+          <div id="tab-quiz" class="tab-pane">
+            <div id="quiz-container"></div>
+          </div>
+
+          <!-- TAB 5: GHÉP NỐI TỪ -->
+          <div id="tab-match" class="tab-pane">
+            <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.2rem;">
+              <i class="fa-solid fa-hand-pointer"></i> Chọn 1 thẻ tiếng Nùng ở cột A rồi chọn 1 giải nghĩa tương ứng ở cột B.
+            </p>
+            <div class="matching-game">
+              <div class="match-col" id="match-col-a"></div>
+              <div class="match-col" id="match-col-b"></div>
+            </div>
+          </div>
+
+          <!-- TAB 6: SẮP XẾP CÂU -->
+          <div id="tab-scramble" class="tab-pane">
+            <div id="scramble-container"></div>
+          </div>
+
+          <!-- TAB 7: VIẾT LẠI CÂU -->
+          <div id="tab-write" class="tab-pane">
+            <div id="write-container"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. VIEW: THẺ TỪ VỰNG -->
+    <section id="view-flashcards" class="view-section">
+      <div class="section-header" style="text-align: center; max-width: 680px; margin: 0 auto 2.2rem;">
+        <h3>Kho Thẻ Từ Vựng Thông Minh 3D</h3>
+        <p>Luyện ghi nhớ từ vựng với thao tác lật thẻ tương tác và bộ lọc phân loại theo từng bài học</p>
+      </div>
+
+      <div class="flashcard-tools">
+        <select class="fc-filter" id="fc-lesson-filter" onchange="filterFlashcards(this.value)">
+          <option value="all">Tất cả bài học (100+ từ)</option>
+          <option value="1">Bài 1: Lời chào và làm quen</option>
+          <option value="2">Bài 2: Giới thiệu bản thân</option>
+          <option value="3">Bài 3: Gia đình và người thân</option>
+          <option value="4">Bài 4: Bạn bè và giao tiếp</option>
+          <option value="5">Bài 5: Số đếm và thời gian</option>
+          <option value="6">Bài 6: Ăn uống</option>
+          <option value="7">Bài 7: Đi chợ – mua bán</option>
+          <option value="8">Bài 8: Nhà cửa – sinh hoạt</option>
+          <option value="9">Bài 9: Hỏi đường – chỉ đường</option>
+          <option value="10">Bài 10: Trường học – bạn bè</option>
+        </select>
+
+        <div style="display: flex; gap: 10px;">
+          <button class="btn btn-light" style="color: var(--primary); border: 1.5px solid var(--border);" onclick="shuffleFlashcards()">
+            <i class="fa-solid fa-shuffle"></i> Xáo thẻ
+          </button>
+          <button class="btn btn-primary" onclick="markCardMastered()">
+            <i class="fa-solid fa-check"></i> Đã thuộc
+          </button>
+        </div>
+      </div>
+
+      <div class="card-container">
+        <div class="card-inner" id="flashcard-box" onclick="flipCard()">
+          <div class="card-front">
+            <span class="lesson-num" id="fc-badge">Bài 1</span>
+            <h2 id="fc-word" style="font-size: 2.6rem; color: var(--primary-dark); margin: 28px 0 20px; font-weight: 800;">Chào</h2>
+            <span style="font-size: 0.82rem; color: var(--text-muted);"><i class="fa-solid fa-arrow-rotate-right"></i> Nhấp để lật xem nghĩa</span>
+          </div>
+          <div class="card-back">
+            <span style="font-size: 0.82rem; font-weight: 800; text-transform: uppercase; color: var(--secondary);">Giải nghĩa tiếng Việt</span>
+            <h3 id="fc-meaning" style="font-size: 1.85rem; color: var(--text-title); margin: 12px 0 16px;">Lời chào</h3>
+            <div id="fc-example" style="font-size: 0.95rem; color: var(--text-muted); background: white; padding: 12px 18px; border-radius: 8px; border-left: 4px solid var(--success);">
+              Chào giạ (Cháu chào bà)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fc-actions">
+        <button class="btn btn-light" style="color: var(--text-title); border: 1.5px solid var(--border);" onclick="prevCard()">
+          <i class="fa-solid fa-chevron-left"></i> Thẻ trước
+        </button>
+        <span id="fc-counter" style="display: flex; align-items: center; font-weight: 800; color: var(--text-muted); font-size: 1rem;">1 / 80</span>
+        <button class="btn btn-light" style="color: var(--text-title); border: 1.5px solid var(--border);" onclick="nextCard()">
+          Thẻ sau <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- 4. VIEW MỚI: TỦ SÁCH ĐIỆN TỬ (GIÁO TRÌNH & CẨM NANG GIAO TIẾP) -->
+    <section id="view-library" class="view-section">
+      <div class="section-header" style="text-align: center; max-width: 820px; margin: 0 auto 2.2rem;">
+        <span class="intro-badge"><i class="fa-solid fa-book-bookmark"></i> Không Gian Đọc Trực Tuyến</span>
+        <h3>Tủ Sách Điện Tử Tiếng Nùng An Lục Yên</h3>
+        <p>Lật sách trực tiếp 3D tương tác với Giáo trình chính thức và Cẩm nang giao tiếp hằng ngày</p>
+      </div>
+
+      <!-- Bộ chuyển đổi 2 quyển sách -->
+      <div class="book-tabs-nav">
+        <button class="book-tab-btn active" onclick="switchBookTab('giaotrinh', 'https://heyzine.com/flip-book/fa4c4f1805.html', this)">
+          <i class="fa-solid fa-graduation-cap"></i> Giáo Trình Tiếng Nùng An Lục Yên
+        </button>
+        <button class="book-tab-btn" onclick="switchBookTab('camnang', 'https://heyzine.com/flip-book/a27c78520b.html', this)">
+          <i class="fa-solid fa-comments"></i> Cẩm Nang Các Câu Giao Tiếp Hằng Ngày
+        </button>
+      </div>
+
+      <!-- Khung nhúng lật sách 3D -->
+      <div class="flipbook-frame-wrapper">
+        <iframe id="library-iframe" src="https://heyzine.com/flip-book/fa4c4f1805.html" allowfullscreen="allowfullscreen"></iframe>
+      </div>
+    </section>
+
+    <!-- 5. VIEW: VIDEO MINH HOẠ -->
+    <section id="view-videos" class="view-section">
+      <div class="section-header" style="text-align: center; max-width: 860px; margin: 0 auto 2.5rem;">
+        <span class="intro-badge"><i class="fa-solid fa-circle-play"></i> Không Gian Hình Ảnh & Âm Thanh</span>
+        <h3>Video Minh Hoạ Về Truyền Thuyết Và Các Câu Chuyện Cổ Của Dân Tộc Nùng An Tại Xã Lục Yên</h3>
+        <p>Thưởng thức các tác phẩm video minh họa sống động về kho tàng truyện cổ, truyền thuyết nguồn cội của đồng bào Nùng An</p>
+      </div>
+
+      <div class="video-theater">
+        <div class="video-player-container">
+          <video id="player-screen" class="main-video-player" controls preload="metadata" poster="Anhgiaotrinhngang.png">
+            <source id="video-source" src="video1.MOV" type="video/quicktime">
+            <source src="video1.mp4" type="video/mp4">
+            Trình duyệt của bạn không hỗ trợ định dạng video này.
+          </video>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <h4 id="now-playing-title" style="font-size: 1.4rem; font-weight: 800; color: #fef08a; font-family: 'Playfair Display', serif;">
+            Video 1: Truyền thuyết Phằn Lùng – Phằn Song (Nguồn gốc con chuồn chuồn)
+          </h4>
+          <p id="now-playing-desc" style="color: #cbd5e1; font-size: 0.96rem; margin-top: 6px;">
+            Video minh họa sinh động về tình bạn, lòng thủy chung và sự tích con chuồn chuồn của dân tộc Nùng An tại xã Lục Yên, tỉnh Lào Cai.
+          </p>
+        </div>
+
+        <div class="video-playlist">
+          <div class="video-item-btn active" id="btn-v1" onclick="switchVideo(1, 'video1.MOV', 'Video 1: Truyền thuyết Phằn Lùng – Phằn Song (Nguồn gốc con chuồn chuồn)', 'Video minh họa sinh động về tình bạn, lòng thủy chung và sự tích con chuồn chuồn của dân tộc Nùng An tại xã Lục Yên, tỉnh Lào Cai.')">
+            <div class="video-thumb-icon"><i class="fa-solid fa-play"></i></div>
+            <div>
+              <div style="font-weight: 800; font-size: 1.05rem;">Video 1: Phằn Lùng – Phằn Song</div>
+              <div style="font-size: 0.86rem; opacity: 0.85;">Truyền thuyết nguồn gốc con chuồn chuồn</div>
+            </div>
+          </div>
+
+          <div class="video-item-btn" id="btn-v2" onclick="switchVideo(2, 'video2.MOV', 'Video 2: Truyền thuyết Dấu ấn trên khăn và áo dài của người Nùng An Lục Yên', 'Video minh họa về câu chuyện tình yêu son sắt và nguồn gốc vết chàm phai hình đồng bạc trắng trên y phục phụ nữ Nùng An.')">
+            <div class="video-thumb-icon"><i class="fa-solid fa-play"></i></div>
+            <div>
+              <div style="font-weight: 800; font-size: 1.05rem;">Video 2: Dấu Ấn Trên Khăn Và Áo Dài</div>
+              <div style="font-size: 0.86rem; opacity: 0.85;">Sự tích trang phục truyền thống Nùng An Lục Yên</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. VIEW: CÁC CÂU CHUYỆN CỔ -->
+    <section id="view-stories" class="view-section">
+      <div class="section-header" style="text-align: center; max-width: 800px; margin: 0 auto 3rem;">
+        <span class="intro-badge"><i class="fa-solid fa-book-bookmark"></i> Kho Tàng Văn Học Dân Gian</span>
+        <h3>Truyền Thuyết & Truyện Cổ Dân Tộc Nùng An Lục Yên</h3>
+        <p>Lắng nghe và đọc trọn vẹn những câu chuyện cổ thấm đượm triết lý nhân sinh được kể qua bao thế hệ</p>
+      </div>
+
+      <!-- TRUYỆN 1 -->
+      <article class="story-section-box">
+        <div class="story-header-area">
+          <div>
+            <span class="story-badge"><i class="fa-solid fa-feather"></i> Truyền thuyết nguồn gốc loài vật</span>
+            <h3>CÂU CHUYỆN TRUYỀN THUYẾT VỀ NGUỒN GỐC CỦA CON CHUỒN CHUỒN CỦA NGƯỜI NÙNG AN LỤC YÊN</h3>
+            <div class="story-lead">Tên câu chuyện: Phằn Lùng – Phằn Song</div>
+          </div>
+          <div class="story-font-ctrls">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted);">Cỡ chữ:</span>
+            <button class="font-size-btn" onclick="adjustStoryFont('story-1', -1)">A-</button>
+            <button class="font-size-btn" onclick="adjustStoryFont('story-1', 1)">A+</button>
+          </div>
+        </div>
+
+        <div class="story-body-text" id="story-1">
+          <p>
+            Phằn Lùng và Phằn Song là tên hai người bạn ở vùng núi cao xa xôi, lớn lên được 2 gia đình cho về thị thành để học hành. Phằn Lùng là người chăm chỉ, chịu khó học tập và sáng ý nên học hành rất khá, Phằn Song thì mải chơi không chí thú học tập. Đến kì thi, kết quả là Phằn Lùng thi đỗ, Phằn Song thi trượt. Do kết quả thi cử tốt nên Phằn Lùng được giữ lại cho quan để làm việc, còn Phằn Song thì phải khăn gói quả mướp trở về quê với ruộng vườn. Trước khi lên Kinh Kỳ đi học thì Phằn Lùng đã có vợ, vợ Phằn Lùng là một người đẹp người đẹp nết, chồng đi học xa thì vợ ở nhà chăm lo chu đáo cho gia đình. Thấm thoát Phằn Lùng lên Kinh Kỳ học và được thăng quan đã 15 năm qua đi, do bận việc quan nên Phằn Lùng chưa một lần được trở về thăm vợ và gia đình. Trong thời gian đó lại có lời đồn Phằn Lùng cầm quân dẹp giặc đã bị giết chết.
+          </p>
+          <p>
+            Mẹ Phằn Lùng là một người phụ nữ có tâm địa xấu xa, thấy con mình lâu không về, con dâu lại rất xinh đẹp hiếu thảo. Bà mẹ thấy Phằn Song chưa lấy ai bèn rắp tâm ép con dâu là vợ Phằn Lùng gả cho Phằn Song. Vợ Phằn Lùng thấy thế đêm đêm khóc nhớ thương chồng, nhưng bà mẹ chồng quyết ép gả cho Phằn Song. Vợ Phằn Lùng nhân 1 lần xuống sông giặt quần áo liền nhét 1 lá thư vào vỏ trứng rồi thả trôi sông mong báo cho chồng biết. Phằn Lùng nhận được thư vợ, biết sắp đến ngày mẹ gả vợ cho Phằn Song bèn lên ngựa về quê. Về đến nhà mẹ không nhận ra đó là Phằn Lùng, Phằn Lùng xin nghỉ lại qua đêm mà bà ta không cho ở mà chỉ lên trọ tại 1 ngôi nhà 1 bà goá ở. Bà goá cảm động vì hơn 10 năm chồng bà chết chưa ai dám lên nhà bà vì bị coi khinh. Bà liền bắt con gà mái xót lại mổ để đãi Phằn Lùng.
+          </p>
+          <p>
+            Hôm sau bên nhà Phằn Lùng mẹ đang tiếp đón khách đến ăn cưới, Phằn Lùng đến gần nhà, bà mẹ tưởng là người ăn xin thì chỉ cho 1 chỗ ở xó bếp để ngồi. Chủ, khách thịt rượu no say còn xương và thức ăn thừa thì ném vào xó bếp cho người ăn xin. Mỗi lần như vậy người ăn xin lại lấy vạt áo để hứng lấy, khi nhấc vạt áo ngoài rách rưới lên đón thức ăn thì để lộ bên trong người đó là một chiếc áo nhà quan. Lúc đó mọi người mới vỡ lẽ chính kẻ ăn mày là Phằn Lùng. Ân hận và xấu hổ trước bàn dân thiên hạ, bà mẹ Phằn Lùng liền úp 2 tay vào mặt và nhảy xuống sông chết.
+          </p>
+          <div class="story-quote-card">
+            "Sau đó người ta thấy bà hoá thành con ấu trùng chuồn chuồn gọi là con bọ nước. Không chịu đựng được sự nguyền rủa của người đời, nhiều lần lột xác con bọ nước hay còn gọi là thiền trùng biến thành con chuồn chuồn bay lên trời."
+          </div>
+          <p>
+            Chào mừng các bạn đến với kho tàng các câu chuyện cổ tích và truyền thuyết của dân tộc Nùng An tại xã Lục Yên tỉnh Lào Cai, và câu chuyện ngày hôm nay của chúng ta là: Phằn Lùng và Phằn Song. Phằn Lùng và Phằn Song là tên hai người bạn thân thiết ở vùng núi cao xa xôi. Khi lớn lên, cả hai được gia đình cho xuống thị thành để đèn sách học hành. Phằn Lùng vốn là người chăm chỉ, chịu khó lại thông minh, sáng dạ nên học lực rất giỏi giang. Ngược lại, Phằn Song lại ham chơi, lười biếng, không chí thú học hành. Đến kỳ khoa cử, kết quả đúng như dự đoán: Phằn Lùng thi đỗ, còn Phằn Song thi trượt. Nhờ đỗ đạt cao, Phằn Lùng được giữ lại triều đình làm quan, còn Phằn Song đành phải khăn gói trở về quê nhà gắn bó với ruộng vườn.
+          </p>
+          <p>
+            Trước ngày lai kinh ứng thí, Phằn Lùng đã cưới vợ. Vợ ông là một người phụ nữ nết na, thùy mị, đẹp người đẹp nết. Suốt thời gian chồng đi học xa, bà ở nhà một lòng thờ mẹ kính chồng, chăm lo chu đáo cho gia đình. Thấm thoắt, Phằn Lùng lên Kinh kỳ học tập rồi làm quan, thời gian đằng đẵng đã mười lăm năm trôi qua. Do bộn bề việc quan và triều chính, ông chưa một lần có cơ hội trở về thăm vợ và quê hương. Đúng lúc đó, ở quê nhà bỗng xuất hiện lời đồn ác ý rằng Phằn Lùng trong lúc cầm quân dẹp giặc đã bị tử trận nơi sa trường.
+          </p>
+          <p>
+            Mẹ của Phằn Lùng vốn là một người phụ nữ ích kỷ, có tâm địa xấu xa. Thấy con trai lâu ngày không về, lại thấy con dâu vừa xinh đẹp vừa hiếu thảo, bà ta liền sinh lòng bất chính. Biết Phằn Song bấy lâu vẫn chưa lập gia đình, bà mẹ bèn rắp tâm ép gả con dâu cho Phằn Song. Vợ Phằn Lùng đau đớn khôn nguôi, đêm đêm khóc thầm nhớ thương chồng, nhưng người mẹ chồng độc ác vẫn quyết chí ép hôn. Trong một lần xuống bến sông giặt giũ, người vợ nghẹn ngào viết một bức thư, nhét vào trong vỏ trứng rồi thả trôi theo dòng nước, cầu mong điều kỳ diệu sẽ mang phong thư đến tay chồng. Trời xanh có mắt, Phằn Lùng vô tình nhận được bức thư của vợ nơi Kinh thành. Biết tin mẹ sắp ép gả vợ mình cho người khác, ông liền tức tốc phi ngựa chiến đêm ngày trở về quê. Khi về đến đầu làng, vì đã xa cách nhiều năm, người mẹ đớn hèn không còn nhận ra con trai mình. Phằn Lùng giả vờ xin ngủ lại qua đêm nhưng bà ta nhẫn tâm xua đuổi. Ông đành tìm đến xin tá túc tại nhà một người đàn bà góa bụa trong làng. Người góa phụ vô cùng cảm động, bởi kể từ ngày chồng bà qua đời hơn mười năm trước, dân làng vì coi khinh nên chưa từng có ai thèm đặt chân lên nhà bà. Để thiết đãi vị khách phương xa, bà liền bắt con gà mái duy nhất còn sót lại trong chuồng để làm cơm cho Phằn Lùng ăn.
+          </p>
+          <p>
+            Ngày hôm sau, tại nhà Phằn Lùng, bà mẹ mở tiệc linh đình, chuẩn bị đón khách khứa đến ăn cưới. Phằn Lùng tiến vào sân, người mẹ tưởng ông là kẻ ăn xin rách rưới nên khinh bỉ chỉ cho ông ngồi ở xó bếp. Trận tiệc diễn ra, gia chủ và quan khách rượu thịt no say. Những mẩu xương và thức ăn thừa, họ đều thẳng tay ném vào xó bếp cho "kẻ ăn mày". Mỗi lần như vậy, Phằn Lùng lại lẳng lặng túm vạt áo để hứng lấy. Khi ông nhấc vạt áo ngoài rách rưới, cũ nát lên đón thức ăn, lớp áo gấm thêu hoa của quan triều đình lộng lẫy bên trong chợt lộ ra.
+          </p>
+          <p>
+            Lúc này, tất cả mọi người mới bàng hoàng vỡ lẽ: Kẻ ăn mày bị khinh rẻ kia chính là quan lớn Phằn Lùng! Ân hận, nhục nhã và xấu hổ tột cùng trước tai mắt của dân làng, người mẹ độc ác liền úp hai tay vào mặt, chạy thẳng ra bến sông rồi nhảy xuống tự vẫn. Sau khi chết, linh hồn bà ta hóa thành một loài ấu trùng chuồn chuồn sống dưới bùn lầy, người đời thường gọi là con bọ nước. Tuy nhiên, vì không chịu đựng nổi những lời nguyền rủa, oán trách của thế gian ngay cả khi đã chết, con bọ nước ấy đã phải lột xác nhiều lần (gọi là thiền trùng) rồi biến thành con chuồn chuồn, sải cánh bay lên trời cao để trốn tránh tội lỗi của mình.
+          </p>
+        </div>
+      </article>
+
+      <!-- TRUYỆN 2 -->
+      <article class="story-section-box">
+        <div class="story-header-area">
+          <div>
+            <span class="story-badge" style="background: var(--accent);"><i class="fa-solid fa-vest"></i> Truyền thuyết trang phục truyền thống</span>
+            <h3>TRUYỀN THUYẾT VỀ DẤU ẤN TRÊN KHĂN VÀ ÁO DÀI CỦA NGƯỜI NÙNG AN LỤC YÊN</h3>
+            <div class="story-lead">Nguồn gốc biểu tượng đồng bạc trắng độc nhất vô nhị trên sắc áo chàm Nùng An</div>
+          </div>
+          <div class="story-font-ctrls">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted);">Cỡ chữ:</span>
+            <button class="font-size-btn" onclick="adjustStoryFont('story-2', -1)">A-</button>
+            <button class="font-size-btn" onclick="adjustStoryFont('story-2', 1)">A+</button>
+          </div>
+        </div>
+
+        <div class="story-body-text" id="story-2">
+          <p>
+            Trang phục truyền thống của người Nùng An Lục Yên rất giản dị, được may bằng vải nhuộm chàm. Trang phục của người phụ nữ Nùng An có một điều đặc biệt là trên góc khăn và gấu áo dài có một dấu ấn màu trắng, hình tròn to bằng đồng bạc trắng. Dấu ấn đó là đặc trưng mà không có dân tộc nào có, đồng thời là nét đặc trưng của người phụ nữ Nùng An.
+          </p>
+          <p>
+            Sự tích của dấu ấn ấy, người xưa kể lại rằng ở một làng nọ có một người con trai và một người con gái rất đẹp đôi, hai người đem lòng yêu thương nhau, thề non hẹn biển sẽ cùng nhau xây dựng hạnh phúc trăm năm. Nhưng thời đó, lễ giáo phong kiến và hủ tục, gia đình hai bên phải môn đăng hộ đối. Chàng trai sinh ra trong một gia đình nghèo, cô gái là con một gia đình khá giả, có của ăn của để. Gia đình bên cô gái biết hai người đem lòng yêu nhau thì nhất quyết ngăn cấm và bắt ép lấy một người con nhà giàu. Biết không chống lại được bố mẹ, mối tình của hai người không đến được với nhau.
+          </p>
+          <p>
+            Như lời hẹn ước, trước hôm nhà trai giàu có đến rước dâu, cô gái và chàng trai nhà nghèo hẹn gặp nhau lần cuối. Hai người quấn quýt không muốn rời. Trời đã gần sáng, đến lúc phải từ biệt, hai người ngậm ngùi hẹn ước: kiếp này không đến được với nhau thì kiếp sau hẹn gặp lại. Nước mắt cô gái chảy như mưa. Cô bèn lấy khăn đội đầu lau nước mắt, làm cho chiếc khăn ướt sũng, nhưng nước mắt cô gái vẫn tuôn rơi. Cô lại lấy vạt áo dài lên lau.
+          </p>
+          <div class="story-quote-card">
+            "Khi hai người rời xa nhau chia tay, chàng trai sửa lại khăn, áo cho người yêu thì thấy ở góc khăn và gấu áo dài có hai vết hình tròn màu trắng do nước mắt của cô gái đã làm phai màu áo chàm. Hai người hẹn nhau sang kiếp sau: cứ tìm người có dấu ấn trên khăn và áo, đó chính là người yêu của mình để đến với nhau."
+          </div>
+          <p>
+            Từ đó đến nay, trên khăn đội đầu và gấu áo dài của người phụ nữ Nùng An Lục Yên luôn có dấu ấn để phân biệt với trang phục của dân tộc khác.
+          </p>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- 7. VIEW: VĂN HÓA NÙNG AN (SÁCH LẬT FLIPBOOK HEYZINE) -->
+    <section id="view-culture" class="view-section">
+      <div class="section-header" style="text-align: center; max-width: 820px; margin: 0 auto 2.5rem;">
+        <span class="intro-badge"><i class="fa-solid fa-book-open"></i> Sách Lật Điện Tử Bản Sắc</span>
+        <h3>Sách Văn Hóa Của Dân Tộc Nùng An Ở Lục Yên - Lào Cai</h3>
+        <p>Lật sách trực tuyến khám phá chi tiết bức tranh toàn cảnh về đời sống, văn hóa, phong tục tập quán và di sản lâu đời</p>
+      </div>
+
+      <!-- KHUNG NHÚNG DUY NHẤT SÁCH VĂN HÓA HEYZINE ĐÃ LÀM SẠCH HOÀN TOÀN -->
+      <div class="flipbook-frame-wrapper">
+        <iframe src="https://heyzine.com/flip-book/c578c1ae53.html" allowfullscreen="allowfullscreen"></iframe>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- QUICK DICTIONARY MODAL -->
+  <div class="modal-overlay" id="dict-modal" onclick="closeDictModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="search-input-header">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="dict-search-input" class="dict-input" placeholder="Nhập từ tiếng Nùng hoặc tiếng Việt để tra nhanh..." oninput="handleDictSearch(this.value)">
+        <span class="kbd-shortcut" style="cursor: pointer;" onclick="closeDictModal()">ESC</span>
+      </div>
+      <div class="dict-results" id="dict-results-container"></div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast-notify">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toast-text">Thông báo</span>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>Mạch Nguồn Nùng An</h4>
+        <p><strong>Địa chỉ / Quê hương:</strong> Lục Yên - Lào Cai</p>
+        <p><strong>Sứ mệnh:</strong> Nền tảng bảo tồn ngôn ngữ và văn hoá dân tộc Nùng An thông qua ứng dụng số hóa giáo dục và học tập trực quan tương tác.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Liên Kết Nhanh</h4>
+        <ul>
+          <li><a href="javascript:void(0)" onclick="switchView('home')"><i class="fa-solid fa-angle-right"></i> Trang Chủ</a></li>
+          <li><a href="javascript:void(0)" onclick="switchView('lessons')"><i class="fa-solid fa-angle-right"></i> 10 Bài Học Chuẩn</a></li>
+          <li><a href="javascript:void(0)" onclick="switchView('library')"><i class="fa-solid fa-angle-right"></i> Tủ Sách Điện Tử</a></li>
+          <li><a href="javascript:void(0)" onclick="switchView('videos')"><i class="fa-solid fa-angle-right"></i> Video Minh Hoạ Truyền Thuyết</a></li>
+          <li><a href="javascript:void(0)" onclick="switchView('stories')"><i class="fa-solid fa-angle-right"></i> Các Câu Chuyện Cổ Tích</a></li>
+          <li><a href="javascript:void(0)" onclick="switchView('culture')"><i class="fa-solid fa-angle-right"></i> Sách Văn Hóa Nùng An</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Thông Tin Đề Án & Nhân Sự</h4>
+        <ul>
+          <li><i class="fa-solid fa-user-pen"></i> <span><strong>Tác giả, nhóm thực hiện:</strong> Nguyễn Văn Lâm, Bạch Trà My</span></li>
+          <li><i class="fa-solid fa-chalkboard-user"></i> <span><strong>Giáo viên hướng dẫn:</strong> Cô Phạm Thị Hồng Nhung</span></li>
+          <li><i class="fa-solid fa-stamp"></i> <span><strong>Người kiểm định sách:</strong> Ông Tăng Ngọc Thắng — Hội trưởng hội Nùng An xã Lục Yên tỉnh Lào Cai</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Mạch nguồn Nùng An. Bản quyền nội dung thuộc nhóm tác giả.</span>
+      <span>Đề án nghiên cứu và bảo tồn văn hóa ngôn ngữ bản địa Lục Yên - Lào Cai.</span>
+    </div>
+  </footer>
+
+  <!-- File JavaScript riêng biệt -->
+  <script src="app.js"></script>
+</body>
+</html>
